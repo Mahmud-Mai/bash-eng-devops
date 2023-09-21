@@ -1,12 +1,11 @@
 import React, { ReactNode } from "react";
 import ProductCard from "./ProductCard";
 import { ProductCardProps } from "../../types";
-import { PRODUCTS_DATA } from "../../constants/index";
 
-const FeaturedProducts = () => {
+const ProductsList = ({ products }: { products: ProductCardProps[] }) => {
   return (
-    <div className="grid grid-cols-2 gap-6 mx-auto w-full">
-      {PRODUCTS_DATA.map(
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-auto w-full">
+      {products.map(
         ({
           id,
           category,
@@ -37,4 +36,4 @@ const FeaturedProducts = () => {
   );
 };
 
-export default FeaturedProducts;
+export default ProductsList;
