@@ -9,25 +9,29 @@ import {
   TabsBody,
   TabsHeader,
 } from "@material-tailwind/react";
-import { PRODUCTS_DATA } from "../../../constants";
+import { PRODUCTS_DATA as products_data } from "../../../constants";
+import { ProductCardProps } from "../../../types";
 
 const Products = (): ReactNode => {
   const [activeTab, setActiveTab] = useState<string>("All");
-  const categories = useGroupProductsByCategory(PRODUCTS_DATA);
+  const categories: {} | any = useGroupProductsByCategory(products_data);
 
   // Set the initial activeTab when the component mounts
   useEffect(() => {
-    const firstCategory = Object.keys(categories.sort()[0]);
-    console.log(`🚀 ~ useEffect ~ firstCategory:`, firstCategory);
-    // setActiveTab(firstCategory);
+    const firstCategory = Object.keys(categories).sort()[0];
+    setActiveTab(firstCategory);
   }, [categories]);
 
   const handleTabChange = (category: string) => {
     setActiveTab(category);
   };
 
-  // Filter the categories object based on the active tab
-  // const categories = categories[activeTab] || [];
+  // // Sort the category names alphabetically
+  const sortedCategories = Object.keys(categories).sort();
+
+  // // Filter the categories object based on the active tab
+  const filteredCategories: ProductCardProps[] | [] = categories[activeTab];
+  console.log(`🚀 ~ Products ~ filteredCategories:`, filteredCategories);
 
   return (
     <section className="flex min-h-screen flex-col items-center justify-between">
@@ -44,7 +48,7 @@ const Products = (): ReactNode => {
                     "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
                 }}
               >
-                {Object.keys(categories).map((category) => (
+                {sortedCategories.map((category) => (
                   <Tab
                     key={category}
                     value={category}
@@ -60,7 +64,7 @@ const Products = (): ReactNode => {
                   key={activeTab}
                   value={activeTab}
                 >
-                  <ProductsList products={categories} />
+                  <ProductsList products={filteredCategories} />
                 </TabPanel>
               </TabsBody>
             </Tabs>
