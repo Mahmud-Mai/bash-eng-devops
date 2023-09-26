@@ -4,7 +4,7 @@ import React from "react";
 
 const NAV_LINKS = [
   { id: 0, text: "How it Works", route: "#how-it-works" },
-  { id: 1, text: "All Products", route: "products" },
+  { id: 1, text: "Products", route: "products" },
   { id: 2, text: "Contact Us", route: "#" },
 ];
 

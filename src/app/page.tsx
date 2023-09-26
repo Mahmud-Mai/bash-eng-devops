@@ -21,7 +21,7 @@ export default function Home() {
               Purchase your food items in <br /> bulk direct from the farm
             </h1>
 
-            <h2 className="text-xl">Some sub heading</h2>
+            {/* <h2 className="text-xl">Some sub heading</h2> */}
           </div>
 
           <div className="my-16 w-full">
@@ -39,7 +39,7 @@ export default function Home() {
           <IntroCardsList />
         </section>
 
-        {/* Recent products that link to products page  */}
+        {/* Featured products that link to products page  */}
         <section className="flex flex-col items-center py-24 w-[80%]">
           <div className="w-full">
             <h1 className="text-5xl text-center py-4">Featured products</h1>

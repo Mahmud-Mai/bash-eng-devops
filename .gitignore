@@ -1,3 +1,6 @@
+# Mongo DB config file
+src/lib/connect-db.ts
+
 # Logs
 logs
 *.log
