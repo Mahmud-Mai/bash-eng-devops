@@ -18,7 +18,7 @@ export const GET = async (req, res) => {
 export const GET_BY_ID = async (req, res) => {
   try {
     await connectdb();
-    const locationId = req.query.id;
+    const locationId = searchParams.get("id");
     const location = await Location.findById(locationId).lean();
     if (!location) {
       return new NextResponse("No location found", { status: 404 });
@@ -42,7 +42,7 @@ export const POST = async (req, res) => {
     await location.save();
 
     // Return the saved location.
-    return res.json(location);
+    return Response.json(location);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -52,7 +52,7 @@ export const PUT = async (req, res) => {
   try {
     await connectdb();
     const locationData = await req.json();
-    const locationId = req.query.id;
+    const locationId = searchParams.get("id");
 
     // Find the location and update it with the new data.
     const location = await Location.findByIdAndUpdate(locationId, locationData);
@@ -61,7 +61,7 @@ export const PUT = async (req, res) => {
     }
 
     // Return the updated location.
-    return res.json(location);
+    return Response.json(location);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -70,7 +70,7 @@ export const PUT = async (req, res) => {
 export const DELETE = async (req, res) => {
   try {
     await connectdb();
-    const locationId = req.query.id;
+    const locationId = searchParams.get("id");
 
     // Find the location and delete it from the database.
     const location = await Location.findByIdAndDelete(locationId);
@@ -79,7 +79,7 @@ export const DELETE = async (req, res) => {
     }
 
     // Return a success message.
-    return res.json({ message: "Location deleted successfully" });
+    return Response.json({ message: "Location deleted successfully" });
   } catch (error) {
     return new NextResponse(error.message, { status: 500 });
   }

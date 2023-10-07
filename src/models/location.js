@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 const locationSchema = new Schema({
   district: {
@@ -13,5 +13,5 @@ const locationSchema = new Schema({
   },
 });
 
-const Location = new model("Location", locationSchema);
+const Location = models.Location || new model("Location", locationSchema);
 export default Location;

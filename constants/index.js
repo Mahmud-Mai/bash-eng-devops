@@ -36,6 +36,8 @@ export const PRODUCTS_DATA = [
     units: "bags",
     price: 1500,
     imgSrc: "/fruits/peach.jpg",
+    phoneNo: +2348012345678,
+    email: "productSeller@mail.com",
   },
   {
     id: 1,
@@ -47,6 +49,8 @@ export const PRODUCTS_DATA = [
     units: "bags",
     price: 2700,
     imgSrc: "/vegetables/onions.jpg",
+    phoneNo: +2348012345678,
+    email: "productSeller@mail.com",
   },
   {
     id: 2,
@@ -58,6 +62,8 @@ export const PRODUCTS_DATA = [
     units: "bags",
     price: 280000,
     imgSrc: "/animals/cattle.jpg",
+    phoneNo: +2348012345678,
+    email: "productSeller@mail.com",
   },
   {
     id: 3,
@@ -69,6 +75,8 @@ export const PRODUCTS_DATA = [
     units: "Units",
     price: 12000,
     imgSrc: "/poultry/turkey.jpg",
+    phoneNo: +2348012345678,
+    email: "productSeller@mail.com",
   },
   {
     id: 4,
@@ -80,6 +88,8 @@ export const PRODUCTS_DATA = [
     units: "Units",
     price: 3000,
     imgSrc: "/poultry/chicken.jpg",
+    phoneNo: +2348012345678,
+    email: "productSeller@mail.com",
   },
   {
     id: 5,
@@ -91,5 +101,7 @@ export const PRODUCTS_DATA = [
     units: "Gallons",
     price: 6000,
     imgSrc: "/diary/milk.jpg",
+    phoneNo: +2348012345678,
+    email: "productSeller@mail.com",
   },
 ];

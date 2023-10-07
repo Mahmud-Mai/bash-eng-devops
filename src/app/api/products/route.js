@@ -18,7 +18,7 @@ export const GET = async (req, res) => {
 export const GET_BY_ID = async (req, res) => {
   try {
     await connectdb();
-    const productId = req.query.id;
+    const productId = searchParams.get("id");
     const product = await Product.findById(productId).lean();
     if (!product) {
       return new NextResponse("No product found", { status: 404 });
@@ -42,7 +42,7 @@ export const POST = async (req, res) => {
     await product.save();
 
     // Return the saved product.
-    return res.json(product);
+    return Response.json(product);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -52,7 +52,7 @@ export const PUT = async (req, res) => {
   try {
     await connectdb();
     const productData = await req.json();
-    const productId = req.query.id;
+    const productId = searchParams.get("id");
 
     // Validate the product data.
     const product = await Product.findById(productId);
@@ -66,7 +66,7 @@ export const PUT = async (req, res) => {
     await product.save();
 
     // Return the updated product.
-    return res.json(product);
+    return Response.json(product);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -75,7 +75,7 @@ export const PUT = async (req, res) => {
 export const DELETE = async (req, res) => {
   try {
     await connectdb();
-    const productId = req.query.id;
+    const productId = searchParams.get("id");
 
     // Find the product and delete it from the database.
     const product = await Product.findByIdAndDelete(productId);
@@ -84,7 +84,7 @@ export const DELETE = async (req, res) => {
     }
 
     // Return a success message.
-    return res.json({ message: "Product deleted successfully" });
+    return Response.json({ message: "Product deleted successfully" });
   } catch (error) {
     return new NextResponse(error.message, { status: 500 });
   }

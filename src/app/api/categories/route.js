@@ -18,7 +18,7 @@ export const GET = async (req, res) => {
 export const GET_BY_ID = async (req, res) => {
   try {
     await connectdb();
-    const categoryId = req.query.id;
+    const categoryId = searchParams.get("id");
     const category = await Category.findById(categoryId).lean();
     if (!category) {
       return new NextResponse("No category found", { status: 404 });
@@ -42,7 +42,7 @@ export const POST = async (req, res) => {
     await category.save();
 
     // Return the saved category.
-    return res.json(category);
+    return Response.json(category);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -52,7 +52,7 @@ export const PUT = async (req, res) => {
   try {
     await connectdb();
     const categoryData = await req.json();
-    const categoryId = req.query.id;
+    const categoryId = searchParams.get("id");
 
     // Find the category and update it with the new data.
     const category = await Category.findByIdAndUpdate(categoryId, categoryData);
@@ -61,7 +61,7 @@ export const PUT = async (req, res) => {
     }
 
     // Return the updated category.
-    return res.json(category);
+    return Response.json(category);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -70,7 +70,7 @@ export const PUT = async (req, res) => {
 export const DELETE = async (req, res) => {
   try {
     await connectdb();
-    const categoryId = req.query.id;
+    const categoryId = searchParams.get("id");
 
     // Find the category and delete it from the database.
     const category = await Category.findByIdAndDelete(categoryId);
@@ -79,7 +79,7 @@ export const DELETE = async (req, res) => {
     }
 
     // Return a success message.
-    return res.json({ message: "Category deleted successfully" });
+    return Response.json({ message: "Category deleted successfully" });
   } catch (error) {
     return new NextResponse(error.message, { status: 500 });
   }

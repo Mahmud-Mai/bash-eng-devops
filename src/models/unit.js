@@ -3,7 +3,8 @@ import { model, Schema } from "mongoose";
 const unitSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: "Please provide the name of the unit",
+    trim: true,
   },
 });
 

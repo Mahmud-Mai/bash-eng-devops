@@ -1,20 +1,25 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema({
-  username: {
+  name: {
     type: String,
-    required: true,
+    required: "Please provide a name",
+    trim: true,
   },
   email: {
     type: String,
-    required: true,
     unique: true,
+    lowercase: true,
+    trim: true,
+    required: "Please provide a valid email address",
   },
+  phoneNumber: Number,
   password: {
     type: String,
-    required: true,
-    minlength: 6,
+    required: "Please provide a valid password",
+    minlength: 4,
   },
 });
 
-const User = new model("User", userSchema);
+const User = models.User || new model("User", userSchema);
+export default User;

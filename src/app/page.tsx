@@ -17,7 +17,7 @@ export default function Home() {
         {/* Hero  */}
         <section className="flex flex-col w-full h-full py-24 px-32 items-center bg-gray-200 bg-[url('https://images.pexels.com/photos/17978110/pexels-photo-17978110/free-photo-of-bags-full-of-spices-at-the-market.jpeg?auto=compress&cs=tinysrgb&w=1600')] bg-cover bg-no-repeat bg-bottom">
           <div className="px-8 mt-12 rounded-lg bg-black/70 text-green-400 text-center">
-            <h1 className="text-7xl font-bold leading-relaxed">
+            <h1 className="text-5xl font-bold leading-relaxed">
               Purchase your food items in <br /> bulk direct from the farm
             </h1>
 

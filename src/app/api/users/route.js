@@ -28,7 +28,7 @@ export const POST = async (req, res) => {
     await user.save();
 
     // Return the saved user.
-    return res.json(user);
+    return Response.json(user);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -38,7 +38,7 @@ export const PUT = async (req, res) => {
   try {
     await connectdb();
     const userData = await req.json();
-    const userId = req.query.id;
+    const userId = searchParams.get("id");
 
     // Find the user and update it with the new data.
     const user = await User.findByIdAndUpdate(userId, userData);
@@ -47,7 +47,7 @@ export const PUT = async (req, res) => {
     }
 
     // Return the updated user.
-    return res.json(user);
+    return Response.json(user);
   } catch (error) {
     return new NextResponse(error.message, { status: 400 });
   }
@@ -56,7 +56,7 @@ export const PUT = async (req, res) => {
 export const DELETE = async (req, res) => {
   try {
     await connectdb();
-    const userId = req.query.id;
+    const userId = searchParams.get("id");
 
     // Find the user and delete it from the database.
     const user = await User.findByIdAndDelete(userId);
@@ -65,7 +65,7 @@ export const DELETE = async (req, res) => {
     }
 
     // Return a success message.
-    return res.json({ message: "User deleted successfully" });
+    return Response.json({ message: "User deleted successfully" });
   } catch (error) {
     return new NextResponse(error.message, { status: 500 });
   }
@@ -74,7 +74,7 @@ export const DELETE = async (req, res) => {
 export const GET_BY_ID = async (req, res) => {
   try {
     await connectdb();
-    const userId = req.query.id;
+    const userId = searchParams.get("id");
     const user = await User.findById(userId).lean();
     if (!user) {
       return new NextResponse("No user found", { status: 404 });
