@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 const unitSchema = new Schema({
   name: {
@@ -8,5 +8,5 @@ const unitSchema = new Schema({
   },
 });
 
-const Unit = new model("Unit", unitSchema);
+const Unit = models.Unit || new model("Unit", unitSchema);
 export default Unit;
