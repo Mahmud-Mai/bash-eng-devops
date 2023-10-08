@@ -5,13 +5,33 @@ import Product from "@/models/product.js";
 export const GET = async (req, res) => {
   try {
     await connectdb();
-    const products = await Product.find().lean();
+    const products = await Product.find()
+      .populate([
+        { path: "category", select: "name" },
+        { path: "unit", select: "name" },
+        // { path: "location", select: "state" },
+        // { path: "user", select: "phoneNumber" },
+      ])
+      .lean();
+
     if (!products) {
       return new NextResponse("No products found", { status: 404 });
     }
-    return new NextResponse(JSON.stringify(products), { status: 200 });
+
+    const formattedProducts = products.map((product) => {
+      const formattedProduct = {
+        ...product,
+        category: product.category?.name,
+        unit: product.unit?.name,
+        location: product.location?.district + ", " + product.location?.state,
+        user: product.user?.name,
+      };
+      return formattedProduct;
+    });
+
+    return new NextResponse(JSON.stringify(formattedProducts), { status: 200 });
   } catch (error) {
-    return new NextResponse("Database Error!", { status: 500 });
+    return new NextResponse("Internal Server Error!", { status: 500 });
   }
 };
 
@@ -19,13 +39,15 @@ export const GET_BY_ID = async (req, res) => {
   try {
     await connectdb();
     const productId = searchParams.get("id");
-    const product = await Product.findById(productId).lean();
+    const product = await Product.findById(productId)
+      .populate(["category", "unit", "location", "user"])
+      .lean();
     if (!product) {
       return new NextResponse("No product found", { status: 404 });
     }
     return new NextResponse(JSON.stringify(product), { status: 200 });
   } catch (error) {
-    return new NextResponse("Database Error!", { status: 500 });
+    return new NextResponse("Internal Server Error!", { status: 500 });
   }
 };
 
@@ -38,7 +60,7 @@ export const POST = async (req, res) => {
     const product = new Product(productData);
     await product.validate();
 
-    // Create a new product and save it to the database.
+    // Create a new product and save it to the Internal Server.
     await product.save();
 
     // Return the saved product.
@@ -62,7 +84,7 @@ export const PUT = async (req, res) => {
     product.set(productData);
     await product.validate();
 
-    // Update the product and save it to the database.
+    // Update the product and save it to the Internal Server.
     await product.save();
 
     // Return the updated product.
@@ -77,7 +99,7 @@ export const DELETE = async (req, res) => {
     await connectdb();
     const productId = searchParams.get("id");
 
-    // Find the product and delete it from the database.
+    // Find the product and delete it from the Internal Server.
     const product = await Product.findByIdAndDelete(productId);
     if (!product) {
       return new NextResponse("No product found", { status: 404 });
