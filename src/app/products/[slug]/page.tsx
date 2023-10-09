@@ -54,10 +54,16 @@ const ProductDetails = async ({ params }: { params: { slug: string } }) => {
                   <p>
                     <span className="text-xl p-4">Contact Us at:</span>
                     <span className="text-xl p-4">
-                      Phone Number: 081-123456789
+                      <a href="tel:+23423-456-7890">Contact on call</a>
                     </span>
                     <span className="text-xl p-4">
-                      Email: farmdirect@mail.com
+                      <label>Email: </label>
+                      <a
+                        href="mailto:Email: farmdirect@mail.com"
+                        target="_blank"
+                      >
+                        Contact at Farm Direct
+                      </a>
                     </span>
                   </p>
                 </div>
