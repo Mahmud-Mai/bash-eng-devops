@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
+// import connectdb from ""
 
 export const GET = (req, res) => {
   //fetch
-
-  return new NextResponse("It works!", { status: 200 });
+try {
+  await connectdb
+  
+  return new NextResponse(products, { status: 200 });
+} catch (error) {
+  
+  return new NextResponse("Database Error!", { status: 500 });
+}
 };
