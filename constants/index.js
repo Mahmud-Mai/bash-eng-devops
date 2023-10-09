@@ -1,27 +1,25 @@
 export const INTRO_DATA = [
   {
     id: 0,
-    icon: "icon",
+    // icon: "icon",
     stepCount: "step One",
-    title: "title",
+    title: "Navigate",
     content:
-      "some dummy content to explain the steps to follow. form a to so so and so.",
+      "Navigate through the homepage and see if there is a product you need.",
   },
   {
     id: 1,
-    icon: "icon",
+    // icon: "icon",
     stepCount: "step Two",
-    title: "title",
-    content:
-      "some dummy content to explain the steps to follow. form a to so so and so.",
+    title: "Select",
+    content: "Select any product you see and want to buy.",
   },
   {
     id: 2,
-    icon: "icon",
+    // icon: "icon",
     stepCount: "step Three",
-    title: "title",
-    content:
-      "some dummy content to explain the steps to follow. form a to so so and so.",
+    title: "Contact",
+    content: "Contact us via the phone number and e-mail address provided.",
   },
 ];
 
