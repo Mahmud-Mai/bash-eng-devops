@@ -9,10 +9,10 @@ export const GET = async (req, res) => {
       .populate([
         { path: "category", select: "name" },
         { path: "unit", select: "name" },
-        // { path: "location", select: "state" },
-        // { path: "user", select: "phoneNumber" },
       ])
       .lean();
+    // { path: "location", select: "state" },
+    // { path: "user", select: "phoneNumber" },
 
     if (!products) {
       return new NextResponse("No products found", { status: 404 });
@@ -23,8 +23,6 @@ export const GET = async (req, res) => {
         ...product,
         category: product.category?.name,
         unit: product.unit?.name,
-        location: product.location?.district + ", " + product.location?.state,
-        user: product.user?.name,
       };
       return formattedProduct;
     });

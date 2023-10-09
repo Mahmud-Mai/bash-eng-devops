@@ -17,3 +17,12 @@ export type ProductCardProps = {
   units: string;
   price: number;
 };
+
+export type ProductListProps = {
+  _id: number;
+  category: String;
+  title: String;
+  image: [String | StaticImport];
+  unit: string;
+  price: number;
+};

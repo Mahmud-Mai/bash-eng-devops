@@ -29,14 +29,8 @@ const productSchema = new Schema(
       type: [String],
       trim: true,
     },
-    location: {
-      type: Schema.Types.ObjectId,
-      ref: "Location",
-    },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
+    location: [{ type: Schema.Types.ObjectId, ref: "Location" }],
+    user: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

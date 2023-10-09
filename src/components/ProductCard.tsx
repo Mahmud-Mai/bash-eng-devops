@@ -5,6 +5,7 @@ import { MdOutlineCategory } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { ProductCardProps } from "../../types";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 const ProductCard = ({
   category,
@@ -19,12 +20,24 @@ const ProductCard = ({
   return (
     <div className="flex border rounded-lg">
       <div className="relative w-full h-[300]">
-        <Image
-          src={imgSrc}
-          fill
-          sizes="100vw"
-          alt="Popular Advert"
-        />
+        {imgSrc
+          ? imgSrc.map(
+              (
+                item: string | StaticImport,
+                i: React.Key | null | undefined
+              ) => {
+                return (
+                  <Image
+                    key={i}
+                    src={item}
+                    fill
+                    sizes="100vw"
+                    alt="Popular Advert"
+                  />
+                );
+              }
+            )
+          : "No Image to display"}
       </div>
       <div className="flex flex-col w-full space-y-3 p-6">
         {/* First section */}
@@ -39,7 +52,7 @@ const ProductCard = ({
 
         {/* Second section  */}
         <div className="flex justify-between text-gray-500 text-sm">
-          <div className="flex items-center space-x-10">
+          {/* <div className="flex items-center space-x-10">
             <span className="mr-2">
               <BiUser />
             </span>
@@ -56,7 +69,7 @@ const ProductCard = ({
               <BiUser />
             </span>
             {time}
-          </div>
+          </div> */}
         </div>
 
         {/* Thrd section */}
