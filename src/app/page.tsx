@@ -8,7 +8,8 @@ import FeaturedProduct from "@/components/FeaturedProducts";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import { INTRO_DATA } from "../../constants";
 import IntroCardsList from "@/components/IntroCardsList";
-import { ThemeProvider } from "@material-tailwind/react";
+import { Button, ThemeProvider } from "@material-tailwind/react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -46,6 +47,16 @@ export default function Home() {
             {/* Products tab  */}
             <section className="py-4">
               <FeaturedProducts />
+              <div className="my-12 flex justify-center">
+                <Link href="/products">
+                  <Button
+                    size="lg"
+                    className="rounded-full"
+                  >
+                    Go to Products Page
+                  </Button>
+                </Link>
+              </div>
             </section>
           </div>
         </section>
