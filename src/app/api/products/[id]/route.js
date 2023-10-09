@@ -9,7 +9,6 @@ export const GET = async (req, { params }) => {
     const product = await Product.findById(productId)
       .populate(["category", "unit"])
       .lean();
-    console.log(`🚀 ~ GET ~ product:`, product);
     if (!product) {
       return new NextResponse("No product found", { status: 404 });
     }

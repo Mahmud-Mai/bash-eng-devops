@@ -2,26 +2,25 @@ import React, { ReactNode, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { ProductCardProps, ProductListProps } from "../../types";
 import { MutatingDots } from "react-loader-spinner";
-import { notFound } from "next/navigation";
 
 const ProductsList = ({ products }: { products: ProductCardProps[] }) => {
   const [data, setData] = useState<any>(null);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
       const res = await fetch("http://localhost:3000/api/products", {
         cache: "no-store",
       });
-      if (!res.ok) return notFound();
+      if (!res.ok) return console.log("Error fetchin from Backend!!!");
       const jsonData = await res.json();
       setData(jsonData);
+      console.log(`🚀 ~ getData ~ jsonData:`, jsonData);
       setLoading(false);
     };
     getData();
   }, []);
 
-  console.log(`🚀 ~ ProductsList ~ data:`, data);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-auto w-full">
       {!data ? (
@@ -57,6 +56,7 @@ const ProductsList = ({ products }: { products: ProductCardProps[] }) => {
             return (
               <ProductCard
                 key={_id}
+                id={_id}
                 category={category}
                 heading={title}
                 user={"user"}

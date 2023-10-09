@@ -33,22 +33,6 @@ export const GET = async (req, res) => {
   }
 };
 
-export const GET_BY_ID = async (req, res) => {
-  try {
-    await connectdb();
-    const productId = searchParams.get("id");
-    const product = await Product.findById(productId)
-      .populate(["category", "unit", "location", "user"])
-      .lean();
-    if (!product) {
-      return new NextResponse("No product found", { status: 404 });
-    }
-    return new NextResponse(JSON.stringify(product), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Internal Server Error!", { status: 500 });
-  }
-};
-
 export const POST = async (req, res) => {
   try {
     await connectdb();

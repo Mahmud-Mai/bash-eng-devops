@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import ProductCard from "./ProductCard";
+import FeaturedProdCard from "./FeaturedProdCard";
 import { ProductCardProps } from "../../types";
 import { PRODUCTS_DATA } from "../../constants/index";
 import { MutatingDots } from "react-loader-spinner";
@@ -35,7 +35,7 @@ const FeaturedProducts = () => {
             price,
           }: ProductCardProps): ReactNode => {
             return (
-              <ProductCard
+              <FeaturedProdCard
                 key={id}
                 category={category}
                 heading={heading}
