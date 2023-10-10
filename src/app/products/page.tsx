@@ -51,7 +51,7 @@ const Products = (): ReactNode => {
 
   // // Filter the categories object based on the active tab
   const filteredCategories: ProductCardProps[] | [] = categories[activeTab];
-  console.log(`🚀 ~ Products ~ filteredCategories:`, filteredCategories);
+  // console.log(`🚀 ~ Products ~ filteredCategories:`, filteredCategories);
 
   return (
     <section className="flex min-h-screen flex-col items-center justify-between">

@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { ProductCardProps, ProductListProps } from "../../types";
-import { MutatingDots } from "react-loader-spinner";
+import { MutatingDots, ThreeDots } from "react-loader-spinner";
 
 const ProductsList = ({ products }: { products: ProductCardProps[] }) => {
   const [data, setData] = useState<any>(null);
@@ -40,7 +40,18 @@ const ProductsList = ({ products }: { products: ProductCardProps[] }) => {
               />
             </div>
           ) : (
-            <p>No profile data</p>
+            <div className="flex justify-center">
+              <ThreeDots
+                height="100"
+                width="100"
+                color="gray"
+                radius="12.5"
+                ariaLabel="mutating-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
           )}
         </div>
       ) : (

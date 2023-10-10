@@ -16,7 +16,7 @@ const ProductCard = ({
   price,
 }: ProductCardProps): ReactNode => {
   return (
-    <Link href={`/${id}`}>
+    <Link href={`/products/${id}`}>
       <div className="flex border rounded-lg">
         <div className="relative w-full h-[300]">
           {imgSrc
