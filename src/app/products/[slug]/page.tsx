@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const url = process.env.BASEURL;
 
-const getData = async (id) => {
+const getData = async (id: String) => {
   const res = await fetch(`${url}/${id}`, {
     cache: "no-store",
   });

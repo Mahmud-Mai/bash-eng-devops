@@ -15,10 +15,8 @@ const ProductCard = ({
   units,
   price,
 }: ProductCardProps): ReactNode => {
-  const base_url = process.env.BASEURL;
-
   return (
-    <Link href={`http://localhost:3000/products/${id}`}>
+    <Link href={`/${id}`}>
       <div className="flex border rounded-lg">
         <div className="relative w-full h-[300]">
           {imgSrc
