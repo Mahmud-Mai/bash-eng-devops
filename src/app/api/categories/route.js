@@ -15,20 +15,6 @@ export const GET = async (req, res) => {
   }
 };
 
-export const GET_BY_ID = async (req, res) => {
-  try {
-    await connectdb();
-    const categoryId = searchParams.get("id");
-    const category = await Category.findById(categoryId).lean();
-    if (!category) {
-      return new NextResponse("No category found", { status: 404 });
-    }
-    return new NextResponse(JSON.stringify(category), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Database Error!", { status: 500 });
-  }
-};
-
 export const POST = async (req, res) => {
   try {
     await connectdb();

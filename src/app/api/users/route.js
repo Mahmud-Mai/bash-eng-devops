@@ -70,17 +70,3 @@ export const DELETE = async (req, res) => {
     return new NextResponse(error.message, { status: 500 });
   }
 };
-
-export const GET_BY_ID = async (req, res) => {
-  try {
-    await connectdb();
-    const userId = searchParams.get("id");
-    const user = await User.findById(userId).lean();
-    if (!user) {
-      return new NextResponse("No user found", { status: 404 });
-    }
-    return new NextResponse(JSON.stringify(user), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Database Error!", { status: 500 });
-  }
-};

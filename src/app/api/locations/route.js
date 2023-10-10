@@ -15,20 +15,6 @@ export const GET = async (req, res) => {
   }
 };
 
-export const GET_BY_ID = async (req, res) => {
-  try {
-    await connectdb();
-    const locationId = searchParams.get("id");
-    const location = await Location.findById(locationId).lean();
-    if (!location) {
-      return new NextResponse("No location found", { status: 404 });
-    }
-    return new NextResponse(JSON.stringify(location), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Database Error!", { status: 500 });
-  }
-};
-
 export const POST = async (req, res) => {
   try {
     await connectdb();
