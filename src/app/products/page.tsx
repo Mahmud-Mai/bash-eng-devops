@@ -14,6 +14,26 @@ import { ProductCardProps } from "../../../types";
 
 const Products = (): ReactNode => {
   const [activeTab, setActiveTab] = useState<string>("All");
+
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setLoading] = useState(false);
+
+  const url = process.env.BASEURL;
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(`${url}`, {
+        cache: "no-store",
+      });
+      if (!res.ok) return console.log("Error fetchin from Backend!!!");
+      const jsonData = await res.json();
+      setData(jsonData);
+      console.log(`🚀 ~ getData ~ jsonData:`, jsonData);
+      setLoading(false);
+    };
+    getData();
+  }, []);
+
   const categories: {} | any = useGroupProductsByCategory(products_data);
 
   // Set the initial activeTab when the component mounts

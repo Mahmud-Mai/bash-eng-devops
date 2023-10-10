@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
+const url = process.env.BASEURL;
+
 const getData = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
+  const res = await fetch(`${url}/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) return "Couldn't Fetch Data from Server";
