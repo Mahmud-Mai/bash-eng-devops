@@ -1,6 +1,6 @@
 # Mongo DB config file
 src/lib/connect-db.ts
-
+.env.local
 # API tests
 /TestApis
 /TestApis/*
