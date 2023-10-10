@@ -32,7 +32,7 @@ const Products = (): ReactNode => {
       setLoading(false);
     };
     getData();
-  }, []);
+  }, [url]);
 
   const categories: {} | any = useGroupProductsByCategory(products_data);
 
